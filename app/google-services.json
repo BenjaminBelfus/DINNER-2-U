@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134978620875",
+    "project_id": "dinner2u-d4592",
+    "storage_bucket": "dinner2u-d4592.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134978620875:android:2531e8c5ec1d1e0bdcfa4e",
+        "android_client_info": {
+          "package_name": "com.example.dinner2u"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134978620875-30l68nrup8s00qdmffjju18lsp8e7jsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjLL54TOB86ImmFCwfGditAfkcYOHPm2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134978620875-30l68nrup8s00qdmffjju18lsp8e7jsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
