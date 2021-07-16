@@ -46,7 +46,6 @@ class Discover : AppCompatActivity() {
         getRestaurants()
 
 
-
         //Code for enabaling swipe left and right
         scrollView.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -92,6 +91,12 @@ class Discover : AppCompatActivity() {
                 return false
             }
         })
+
+        menuButton.setOnClickListener{
+            val intent = Intent(this, detailMenu::class.java)
+            startActivity(intent)
+        }
+
     }
 
 
@@ -157,10 +162,6 @@ class Discover : AppCompatActivity() {
 
             })
     }
-
-
-
-
 
     internal fun onLeftSwipe() {
         if (index <= (restaurantList.size - 1)) {

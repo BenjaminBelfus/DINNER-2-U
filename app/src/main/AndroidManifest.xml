@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DINNER2U">
-        <activity android:name=".Categories"></activity>
+        <activity android:name=".DishDetail"></activity>
+        <activity android:name=".detailMenu" />
+        <activity android:name=".Categories" />
         <activity android:name=".Discover2" />
         <activity android:name=".Discover" />
         <activity android:name=".Register" />

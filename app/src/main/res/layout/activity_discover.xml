@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantCategory"
             app:srcCompat="@drawable/sushinigiri"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/sushinigiri" />
 
         <ImageView
             android:id="@+id/imagen3"
@@ -96,7 +96,7 @@
             app:layout_constraintStart_toStartOf="@+id/imagen1"
             app:layout_constraintTop_toBottomOf="@+id/imagen3"
             app:srcCompat="@drawable/horizontal2"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/horizontal2" />
 
         <ImageView
             android:id="@+id/imagen2"
