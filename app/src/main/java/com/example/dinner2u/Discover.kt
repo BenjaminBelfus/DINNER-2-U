@@ -28,28 +28,36 @@ class Discover : AppCompatActivity() {
     var downX:Float = 0.0f
     var upX:Float = 0.0f
 
-    val swipeDistance = 500
+    val swipeDistance = 600
 
     //variables para uploader imagenes
     lateinit var storage:FirebaseStorage
-    lateinit var restaurantList:ArrayList<Restaurant>
     lateinit var db:FirebaseFirestore
-    var count = 0
+    lateinit var restaurantList:ArrayList<Restaurant>
+    var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
 
         storage = Firebase.storage
-        restaurantList = arrayListOf()
         db = FirebaseFirestore.getInstance()
+        restaurantList = arrayListOf()
         getRestaurants()
 
+
+
+        //Code for enabaling swipe left and right
         scrollView.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 when (event.action) {
+                    //ACTION_DOWN means when a press gesture has started.
+                    //LO UNICO QUE NECESITO CUANDO HACE ACTION_DOWN ES GUARDAR EL EVENT.X
                     MotionEvent.ACTION_DOWN -> {
+                        //event.x gets the x coordinate of the screen
                         run { downX = event.x }
+
+                        //DESDE ESTA LINEA HASTA DONDE MARQUE, ESTA FUNCION NO SE NECESTIA. AUN FALTA POR ENTENDER.............................................................
                         run {
                             upX = event.x
                             val deltaX: Float = downX - upX
@@ -63,12 +71,15 @@ class Discover : AppCompatActivity() {
                                 }
                             }
                         }
+                        //HASTA ACA............................................................................................................................................
                     }
+
+                    //ACTION_UP means when a pressed gesture has finish
                     MotionEvent.ACTION_UP -> {
                         upX = event.x
-                        val deltaX: Float = downX - upX
-                        if (Math.abs(deltaX) > 0) {
-                            return if (deltaX >= swipeDistance) {
+                        val deltaX: Float =  downX - upX
+                        if (Math.abs(deltaX) > 0 && Math.abs(deltaX) > swipeDistance) {
+                            return if (downX > upX) {
                                 onLeftSwipe()
                                 true
                             } else {
@@ -84,9 +95,8 @@ class Discover : AppCompatActivity() {
     }
 
 
-    //funcion para descargar imagenes
+    //funcion para igualar variables de fotos a sus path
     fun downloadImages(index: Int) {
-        var imageRef = storage.reference
         val restaurant = restaurantList[index]
         var imagenPrincipalPath = "Restuarantes/" + restaurant.id + "/restaurant.jpeg"
         var foto1Path = "Restuarantes/" + restaurant.id + "/foto1.jpeg"
@@ -102,6 +112,7 @@ class Discover : AppCompatActivity() {
 
     }
 
+    //funcion para descargar cada imagen y setearla a su respectivo ID en el layout
     fun downloadImage(imagePath: String, imageV: ImageView) = CoroutineScope(Dispatchers.IO).launch {
         var imageRef = storage.reference
         try {
@@ -151,31 +162,19 @@ class Discover : AppCompatActivity() {
 
 
 
-    private fun onSwipeBottom() {
-        Toast.makeText(this, "Bottom Swipe", Toast.LENGTH_LONG).show()
-    }
-
-    private fun onSwipeTop() {
-        Toast.makeText(this, "Top Swipe", Toast.LENGTH_LONG).show()
-    }
-
     internal fun onLeftSwipe() {
-        if (count <= (restaurantList.size - 1)) {
-            count++
-            downloadImages(count)
-            updateText(count)
+        if (index <= (restaurantList.size - 1)) {
+            index++
+            downloadImages(index)
+            updateText(index)
         }
     }
 
     internal fun onSwipeRight() {
-        if (count > 0) {
-            count--
-            downloadImages(count)
-            updateText(count)
+        if (index > 0) {
+            index--
+            downloadImages(index)
+            updateText(index)
         }
-
     }
-
-
-
 }
