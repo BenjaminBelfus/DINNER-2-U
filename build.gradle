@@ -18,6 +18,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
+        //comentar la linea de abajo (recomendada por un warning que salia)
         //jcenter() // Warning: this repository is going to shut down soon
     }
 }

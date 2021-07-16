@@ -21,7 +21,7 @@ class Login : AppCompatActivity() {
             if (emailAddressText.text.isNotEmpty() && passwordText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAddressText.text.toString(), passwordText.text.toString()).addOnCompleteListener{
                     if (it.isSuccessful) {
-                        val intent = Intent(this, Discover::class.java)
+                        val intent = Intent(this, Categories::class.java)
                         startActivity(intent)
                     } else {
                         showAlert()
@@ -34,7 +34,7 @@ class Login : AppCompatActivity() {
     fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("An error has occured when creating user")
+        builder.setMessage("Incorrect email or password")
         builder.setPositiveButton("Okey", null)
 
         val dialog: AlertDialog = builder.create()
