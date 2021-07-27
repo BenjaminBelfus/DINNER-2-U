@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292525"
-    tools:context=".Login">
+    tools:context=".models.models.LoginActivity">
 
     <TextView
         android:id="@+id/loginText"
@@ -13,7 +13,7 @@
         android:layout_height="37dp"
         android:layout_marginTop="140dp"
         android:background="#292525"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="52dp"
         android:ems="10"
-        android:hint="Email Address"
+        android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -42,7 +42,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -56,7 +56,7 @@
         android:layout_width="347dp"
         android:layout_height="56dp"
         android:layout_marginTop="56dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         app:backgroundTint="#FF03DAC5"
         app:layout_constraintEnd_toEndOf="parent"

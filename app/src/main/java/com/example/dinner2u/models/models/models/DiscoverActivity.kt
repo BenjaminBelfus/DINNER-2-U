@@ -1,9 +1,8 @@
-package com.example.dinner2u
+package com.example.dinner2u.models.models
 
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
@@ -11,6 +10,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import com.example.dinner2u.R
+import com.example.dinner2u.models.models.datasource.RestaurantDataSource
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class Discover : AppCompatActivity() {
+class DiscoverActivity : AppCompatActivity() {
 
     private lateinit var detector: GestureDetectorCompat
     var downX:Float = 0.0f
@@ -33,16 +34,15 @@ class Discover : AppCompatActivity() {
     //variables para uploader imagenes
     lateinit var storage:FirebaseStorage
     lateinit var db:FirebaseFirestore
-    lateinit var restaurantList:ArrayList<Restaurant>
+    lateinit var restaurantList:ArrayList<RestaurantDataSource>
     var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
-
-        storage = Firebase.storage
         db = FirebaseFirestore.getInstance()
         restaurantList = arrayListOf()
+        storage = Firebase.storage
         getRestaurants()
 
 
@@ -93,7 +93,7 @@ class Discover : AppCompatActivity() {
         })
 
         menuButton.setOnClickListener{
-            val intent = Intent(this, detailMenu::class.java)
+            val intent = Intent(this, DetailMenuActivity::class.java)
             startActivity(intent)
         }
 
@@ -104,6 +104,8 @@ class Discover : AppCompatActivity() {
     fun downloadImages(index: Int) {
         val restaurant = restaurantList[index]
         var imagenPrincipalPath = "Restuarantes/" + restaurant.id + "/restaurant.jpeg"
+
+
         var foto1Path = "Restuarantes/" + restaurant.id + "/foto1.jpeg"
         var foto2Path = "Restuarantes/" + restaurant.id + "/foto2.jpeg"
         var foto3Path = "Restuarantes/" + restaurant.id + "/foto3.jpeg"
@@ -129,7 +131,7 @@ class Discover : AppCompatActivity() {
             }
         } catch(e: Exception) {
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@Discover, e.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@DiscoverActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -150,11 +152,11 @@ class Discover : AppCompatActivity() {
             .addSnapshotListener(object: EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if (error != null) {
-                        Toast.makeText(this@Discover, error.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@DiscoverActivity, error.message, Toast.LENGTH_LONG).show()
                     } else {
                         for (document: DocumentChange in value?.documentChanges!!) {
                             if (document.type == DocumentChange.Type.ADDED) {
-                                restaurantList.add(document.document.toObject(Restaurant::class.java))
+                                restaurantList.add(document.document.toObject(RestaurantDataSource::class.java))
                             }
                         }
                     }

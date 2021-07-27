@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DINNER2U">
-        <activity android:name=".DishDetail"></activity>
-        <activity android:name=".detailMenu" />
-        <activity android:name=".Categories" />
-        <activity android:name=".Discover2" />
-        <activity android:name=".Discover" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".models.models.CheckoutActivity"></activity>
+        <activity android:name=".models.models.DishDetailActivity" />
+        <activity android:name=".models.models.DetailMenuActivity" />
+        <activity android:name=".models.models.CategoriesActivity" />
+        <activity android:name=".models.models.DiscoverActivity" />
+        <activity android:name=".models.models.RegisterActivity" />
+        <activity android:name=".models.models.LoginActivity" />
+        <activity android:name=".models.models.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

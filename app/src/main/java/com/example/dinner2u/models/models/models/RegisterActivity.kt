@@ -1,16 +1,15 @@
-package com.example.dinner2u
+package com.example.dinner2u.models.models
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import com.google.android.gms.tasks.OnFailureListener
+import com.example.dinner2u.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_register.*
-import org.w3c.dom.Text
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +37,9 @@ class Register : AppCompatActivity() {
 
     fun showAlert() {
        val builder = AlertDialog.Builder(this)
-       builder.setTitle("Error")
-       builder.setMessage("An error has occured when creating user")
-       builder.setPositiveButton("Okey", null)
+       builder.setTitle(R.string.error)
+       builder.setMessage(R.string.an_error_has_occurred)
+       builder.setPositiveButton(R.string.okey, null)
 
        val dialog:AlertDialog = builder.create()
        dialog.show()
@@ -53,7 +52,7 @@ class Register : AppCompatActivity() {
             "uid" to uid
         )
         db.collection("users").document(uid).set(user).addOnSuccessListener {
-            val intent = Intent(this, Discover::class.java)
+            val intent = Intent(this, DiscoverActivity::class.java)
             startActivity(intent)
         }.addOnFailureListener{
             showAlert()

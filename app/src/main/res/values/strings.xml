@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">DINNER2U</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="category">Category</string>
+    <string name="sushi">Sushi</string>
+    <string name="sushi_description">Pioneered by Chef Nobu Matsuhisa, the iconic Nobu menu is influenced by his years of studying Japanese cuisine in Tokyo and his extensive travels. The diverse celebration of flavors formed Nobu’s trademark ‘Nobu Style’, which is intrinsic to all Nobu menus worldwide.</string>
+    <string name="menu">MENU</string>
+    <string name="sushi_restaurant_name">Nobu</string>
+    <string name="salmon_nigiri">Salmon Nigiri</string>
+    <string name="salmon">- Salmon</string>
+    <string name="atun">- Atun</string>
+    <string name="sushi_rice">- Sushi Rice</string>
+    <string name="discover">Discover</string>
+    <string name="pizza">Pizza</string>
+    <string name="hamburguers">Hamburguers</string>
+    <string name="error">Error</string>
+    <string name="incorrect_email_or_password">Incorrect email or password</string>
+    <string name="okey">Okey</string>
+    <string name="an_error_has_occurred">An error has occurred when creating use</string>
 </resources>

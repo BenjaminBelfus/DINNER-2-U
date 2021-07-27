@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Categories">
+    tools:context=".models.models.CategoriesActivity">
 
     <Button
         android:id="@+id/discoverButton"
@@ -13,7 +13,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="112dp"
         android:shadowColor="#FFFFFF"
-        android:text="Discover"
+        android:text="@string/discover"
         android:textColor="#000000"
         android:textSize="24sp"
         app:backgroundTint="#FFFFFF"
@@ -30,7 +30,7 @@
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Sushi"
+        android:text="@string/sushi"
         android:textColor="#000000"
         android:textSize="24sp"
         app:backgroundTint="#FFFFFF"
@@ -46,7 +46,7 @@
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Pizza"
+        android:text="@string/pizza"
         android:textColor="#000000"
         android:textSize="24sp"
         app:backgroundTint="#FFFFFF"
@@ -62,7 +62,7 @@
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Hamburguers"
+        android:text="@string/hamburguers"
         android:textColor="#000000"
         android:textSize="24sp"
         app:backgroundTint="#FFFFFF"
