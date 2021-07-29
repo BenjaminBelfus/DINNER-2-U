@@ -1,4 +1,4 @@
-package com.example.dinner2u.models.models
+package com.example.dinner2u.models.models.models.models
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

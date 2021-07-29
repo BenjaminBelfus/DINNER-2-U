@@ -1,4 +1,4 @@
-package com.example.dinner2u.models.models
+package com.example.dinner2u.models.models.models.models
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

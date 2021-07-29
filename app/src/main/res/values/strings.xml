@@ -21,4 +21,7 @@
     <string name="incorrect_email_or_password">Incorrect email or password</string>
     <string name="okey">Okey</string>
     <string name="an_error_has_occurred">An error has occurred when creating use</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="back">Back</string>
+    <string name="burguer_description">Championing some of the most incredible ingredients from amazing British providers, producers, artisans and growers, all cooked to absolute perfection and served with sensational sides, I guarantee this will be a burger experience like no other.</string>
 </resources>

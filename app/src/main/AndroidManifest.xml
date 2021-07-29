@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dinner2u">
 
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,14 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DINNER2U">
-        <activity android:name=".models.models.CheckoutActivity"></activity>
-        <activity android:name=".models.models.DishDetailActivity" />
-        <activity android:name=".models.models.DetailMenuActivity" />
-        <activity android:name=".models.models.CategoriesActivity" />
-        <activity android:name=".models.models.DiscoverActivity" />
-        <activity android:name=".models.models.RegisterActivity" />
-        <activity android:name=".models.models.LoginActivity" />
-        <activity android:name=".models.models.MainActivity">
+        <activity android:name=".models.models.models.models.CategoriesActivity"></activity>
+        <activity android:name=".models.models.models.models.CheckoutActivity"/>
+        <activity android:name=".models.models.models.models.CartActivity"/>
+        <activity android:name=".models.models.models.models.DishDetailActivity" />
+        <activity android:name=".models.models.models.models.DetailMenuActivity" />
+        <activity android:name=".models.models.models.models.DiscoverActivity" />
+        <activity android:name=".models.models.models.models.RegisterActivity" />
+        <activity android:name=".models.models.models.models.LoginActivity" />
+        <activity android:name=".models.models.models.models.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
