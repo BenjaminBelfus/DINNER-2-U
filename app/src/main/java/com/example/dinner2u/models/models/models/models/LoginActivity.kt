@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.dinner2u.R
-import com.example.dinner2u.models.models.models.adapters.UsersDBHelper
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
+import com.example.dinner2u.models.models.models.database.users.UsersDBHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

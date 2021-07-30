@@ -1,4 +1,4 @@
-package com.example.dinner2u.models.models.models.adapters
+package com.example.dinner2u.models.models.models.database.users
 
 data class UserModel(
     val id:String,
