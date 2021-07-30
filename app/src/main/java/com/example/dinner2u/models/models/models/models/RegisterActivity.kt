@@ -1,23 +1,28 @@
 package com.example.dinner2u.models.models.models.models
 
+import android.R.attr.data
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dinner2u.R
-import com.example.dinner2u.models.models.models.dataclass.UserDataClass
-import com.google.firebase.auth.FirebaseAuth
+import com.example.dinner2u.models.models.models.adapters.UserModel
+import com.example.dinner2u.models.models.models.adapters.UsersDBHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
+
 
 class RegisterActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
-    val dataclass : UserDataClass = UserDataClass()
+    lateinit var usersDBHelper: UsersDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        usersDBHelper = UsersDBHelper(this)
         setup2()
     }
 
@@ -25,16 +30,12 @@ class RegisterActivity : AppCompatActivity() {
         registerButton.setOnClickListener{
             if (registerNameText.text.isNotEmpty() && registerLastNameText.text.isNotEmpty()
                 && registerEmailText.text.isNotEmpty() && registerPasswordText.text.isNotEmpty()) {
-                if (!dataclass.userHashmap.containsKey(registerEmailText.text.toString())) {
-                    val list:ArrayList<String> = ArrayList<String>()
-                    list.add(registerNameText.text.toString())
-                    list.add(registerLastNameText.text.toString())
-                    list.add(registerEmailText.text.toString())
-                    list.add(registerPasswordText.text.toString())
-                    dataclass.userHashmap.put(registerEmailText.text.toString(), list)
-                } else {
-                    showAlert()
-                }
+                val user = UserModel(UUID.randomUUID().toString(), registerNameText.text.toString(), registerLastNameText.text.toString(),
+                    registerEmailText.text.toString(), registerPasswordText.text.toString(), "7/29/2021", registerMainAddress.text.toString())
+                var result = usersDBHelper.insertUser(user)
+                Toast.makeText(this, "User Created", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, CategoriesActivity::class.java)
+                startActivity(intent)
             }
         }
     }

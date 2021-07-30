@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 //import com.example.dinner2u.models.models.datasource.`RestaurantDataSource(firebase)`
-import com.example.dinner2u.models.models.models.dataclass.RestaurantPost
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -34,7 +33,6 @@ import com.squareup.picasso.Picasso
 class DiscoverActivity : AppCompatActivity() {
 
     var counter = 0
-    var dataclass :RestaurantPost = RestaurantPost()
 
 
     private lateinit var detector: GestureDetectorCompat
@@ -74,22 +72,11 @@ class DiscoverActivity : AppCompatActivity() {
                         val deltaX: Float =  downX - upX
                         if (Math.abs(deltaX) > 0 && Math.abs(deltaX) > swipeDistance) {
                             return if (downX > upX) {
-                                if (counter == 0){
-                                    return false
-                                } else {
-                                    counter--
-                                    onLeftSwipe2(counter)
-                                    true
-                                }
-
+                                onLeftSwipe2(counter)
+                                true
                             } else {
-                                if (counter == dataclass.hashmap.size - 1){
-                                    return false
-                                } else {
-                                    counter++
-                                    onSwipeRight2(counter)
-                                    true
-                                }
+                                onSwipeRight2(counter)
+                                true
                             }
                         }
                     }
@@ -108,54 +95,9 @@ class DiscoverActivity : AppCompatActivity() {
 
 
     internal fun onLeftSwipe2(counter: Int) {
-        if (counter == 0){
-            return
-        }
-        else {
-            var values = dataclass.hashmap.get(counter)
-            var imagenPrin:String? = values?.get(0)
-            var resName:String? = values?.get(1)
-            var resCategory:String? = values?.get(2)
-            var firstPic:String? = values?.get(3)
-            var secondPic:String? = values?.get(4)
-            var thirdpic:String? = values?.get(5)
-            val resDescription:String? = values?.get(6)
-
-            Picasso.with(this).load(imagenPrin).into(imagenPrincipal)
-            restaurantName.text = resName
-            restaurantCategory.text = resCategory
-            Picasso.with(this).load(firstPic).into(imagen1)
-            Picasso.with(this).load(secondPic).into(imagen2)
-            Picasso.with(this).load(thirdpic).into(imagen3)
-            restaurantDescription.text = resDescription
-        }
     }
 
     internal fun onSwipeRight2(counter: Int) {
-        var values = dataclass.hashmap.get(counter)
-        if (values != null) {
-            if (counter == values.size - 1 ){
-                return
-            }
-            else {
-                var values = dataclass.hashmap.get(counter)
-                var imagenPrin:String? = values?.get(0)
-                var resName:String? = values?.get(1)
-                var resCategory:String? = values?.get(2)
-                var firstPic:String? = values?.get(3)
-                var secondPic:String? = values?.get(4)
-                var thirdpic:String? = values?.get(5)
-                val resDescription:String? = values?.get(6)
-
-                Picasso.with(this).load(imagenPrin).into(imagenPrincipal)
-                restaurantName.text = resName
-                restaurantCategory.text = resCategory
-                Picasso.with(this).load(firstPic).into(imagen1)
-                Picasso.with(this).load(secondPic).into(imagen2)
-                Picasso.with(this).load(thirdpic).into(imagen3)
-                restaurantDescription.text = resDescription
-            }
-        }
     }
 
 
