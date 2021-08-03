@@ -15,7 +15,7 @@
         tools:context=".models.models.models.models.DiscoverActivity">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/categoryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -33,7 +33,7 @@
         <ImageView
             android:id="@+id/imagenPrincipal"
             android:layout_width="match_parent"
-            android:layout_height="308dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="44dp"
@@ -42,106 +42,66 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
             app:srcCompat="@drawable/sushirestaurant"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/restaurantCategory"
+            android:id="@+id/restaurantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:shadowColor="#000000"
-            android:text="@string/sushi"
-            android:textColor="#000000"
-            android:textSize="36dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/imagen1"
+            android:layout_marginTop="8dp"
+            android:text="@string/sushi_restaurant_name"
+            app:layout_constraintStart_toStartOf="@+id/imagenPrincipal"
             app:layout_constraintTop_toBottomOf="@+id/imagenPrincipal" />
 
         <ImageView
-            android:id="@+id/imagen1"
-            android:layout_width="160dp"
-            android:layout_height="275dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantCategory"
-            app:srcCompat="@drawable/sushinigiri"
-            tools:srcCompat="@drawable/sushinigiri" />
-
-        <ImageView
-            android:id="@+id/imagen3"
-            android:layout_width="187dp"
-            android:layout_height="129dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.343"
-            app:layout_constraintStart_toEndOf="@+id/imagen1"
-            app:layout_constraintTop_toBottomOf="@+id/imagen2"
-            app:srcCompat="@drawable/horizontal"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/imagen4"
+            android:id="@+id/discoverImage1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:paddingRight="14dp"
-            app:layout_constraintStart_toStartOf="@+id/imagen1"
-            app:layout_constraintTop_toBottomOf="@+id/imagen3"
-            app:srcCompat="@drawable/horizontal2"
-            tools:srcCompat="@drawable/horizontal2" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintWidth_percent="0.5"/>
 
         <ImageView
-            android:id="@+id/imagen2"
-            android:layout_width="187dp"
-            android:layout_height="129dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
+            android:id="@+id/discoverImage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imagen1"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantCategory"
+            app:layout_constraintStart_toEndOf="@+id/discoverImage1"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantName"
             app:srcCompat="@drawable/sushi"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/restaurantDescription"
-            android:layout_width="382dp"
-            android:layout_height="268dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:paddingRight="10dp"
-            android:text="@string/sushi_description"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24dp"
+        <ImageView
+            android:id="@+id/discoverImage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.179"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagen4" />
+            app:layout_constraintTop_toBottomOf="@+id/discoverImage1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/discoverDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discoverImage3" />
 
         <Button
-            android:id="@+id/menuButton"
+            android:id="@+id/discoverMenuButton"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginTop="8dp"
             android:paddingRight="16dp"
             android:text="@string/menu"
             android:textSize="26dp"
@@ -150,18 +110,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantDescription" />
-
-        <TextView
-            android:id="@+id/restaurantName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/sushi_restaurant_name"
-            app:layout_constraintStart_toStartOf="@+id/imagenPrincipal"
-            app:layout_constraintTop_toBottomOf="@+id/imagenPrincipal" />
+            app:layout_constraintTop_toBottomOf="@+id/discoverDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

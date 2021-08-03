@@ -1,9 +1,13 @@
 package com.example.dinner2u.models.models.models.models
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
@@ -11,7 +15,7 @@ import com.example.dinner2u.models.models.models.database.categories.CategoryMod
 class CategoryAdapter(private val categoryList: ArrayList<CategoryModel>):
     RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
 
-
+    var onItemClick:((CategoryModel) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,6 +28,9 @@ class CategoryAdapter(private val categoryList: ArrayList<CategoryModel>):
     override fun onBindViewHolder(holder: CategoryAdapter.MyViewHolder, position: Int) {
         val category: CategoryModel = categoryList[position]
         holder.name.text = category.name
+        holder.cardview.setOnClickListener {
+            onItemClick?.invoke(category)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -33,5 +40,6 @@ class CategoryAdapter(private val categoryList: ArrayList<CategoryModel>):
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.nameCategoryTextView)
+        val cardview: CardView = itemView.findViewById(R.id.categoryCardID)
     }
 }

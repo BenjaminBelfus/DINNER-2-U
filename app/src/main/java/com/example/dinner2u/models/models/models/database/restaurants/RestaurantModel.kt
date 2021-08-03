@@ -5,7 +5,7 @@ data class RestaurantModel(
     val id:String,
     val name:String,
     val description: String,
-    val foodcategory: String,
+    val foodcategoryID: String,
     val mainpicture: String,
     val firstpicture: String,
     val secondpicture: String,

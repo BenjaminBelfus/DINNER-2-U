@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.dinner2u.models.models.models.database.DBContract
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
+import com.example.dinner2u.models.models.models.database.restaurants.RestaurantsDBHelper
 import com.example.dinner2u.models.models.models.database.users.UsersDBHelper
 
 class MenuDBHelper(context: Context) : SQLiteOpenHelper(context,
@@ -81,6 +82,39 @@ class MenuDBHelper(context: Context) : SQLiteOpenHelper(context,
         }
         return menus
     }
+
+
+    fun readAllMenu(restaurantid: String): ArrayList<MenuModel> {
+        val menus = ArrayList<MenuModel>()
+        val db = writableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery("select " + DBContract.DishEntry.COLUMN_DISH_ID + ", " + DBContract.DishEntry.COLUMN_DISH_NAME + ", " +
+                    DBContract.DishEntry.COLUMN_DISH_PICTURE + ", " + DBContract.DishEntry.COLUMN_DISH_DESCRIPTION + ", " + DBContract.DishEntry.COLUMN_DISH_PRICE +
+                "from " + DBContract.MenuEntry.TABLE_NAME + " RIGHT JOIN " + DBContract.DishEntry.TABLE_NAME + " ON " + DBContract.MenuEntry.COLUMN_DISH_ID + " = " + DBContract.DishEntry.COLUMN_DISH_ID
+                    + DBContract.MenuEntry.COLUMN_RESTAURANT_ID + " = '" + restaurantid + "'"  , null)
+        } catch (e: SQLiteException) {
+            db.execSQL(MenuDBHelper.SQL_CREATE_ENTRIES)
+            return ArrayList()
+        }
+
+        var menuid: String
+        var restaurantid: String
+        var dishid: String
+        if (cursor!!.moveToFirst()) {
+            while (cursor.isAfterLast == false) {
+                menuid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_MENU_ID))
+                restaurantid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_RESTAURANT_ID))
+                dishid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_DISH_ID))
+
+                menus.add(MenuModel(menuid, restaurantid, dishid))
+                cursor.moveToNext()
+            }
+        }
+        return menus
+    }
+
+
 
     @Throws(SQLiteConstraintException::class)
     fun deleteMenu(menuid: String): Boolean {

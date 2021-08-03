@@ -1,81 +1,91 @@
 package com.example.dinner2u.models.models.models.models
 
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
-//import com.example.dinner2u.models.models.datasource.`RestaurantDataSource(firebase)`
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_discover.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import android.net.Uri;
 import com.example.dinner2u.R
+import com.example.dinner2u.models.models.models.database.categories.CategoryModel
+import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
+import com.example.dinner2u.models.models.models.database.restaurants.RestaurantsDBHelper
 import com.squareup.picasso.Picasso
+import kotlin.math.abs
 
 
 class DiscoverActivity : AppCompatActivity() {
 
-    var counter = 0
+    //Variables used for firebase
+    private lateinit var storage:FirebaseStorage
+    private lateinit var db:FirebaseFirestore
+
+    //Variables used for local database
+    private lateinit var restaurantdbhelper: RestaurantsDBHelper
+    private val restaurantListByCategory = arrayListOf<RestaurantModel>()
+    private lateinit var category: CategoryModel
+
+    //Variables used for swipe left and swipe right function
+    private var downX:Float = 0.0f
+    private var upX:Float = 0.0f
+    private val swipeDistance = 600
+
+    //Variable used for keeping track of the restaurant in restauratnListByCategory when swipe left or right
+    private var index = 0
 
 
-    private lateinit var detector: GestureDetectorCompat
-    var downX:Float = 0.0f
-    var upX:Float = 0.0f
-
-    val swipeDistance = 600
-
-    //variables para uploader imagenes
-    lateinit var storage:FirebaseStorage
-    lateinit var db:FirebaseFirestore
-    //lateinit var restaurantList:ArrayList<RestaurantDataSource(firebase)>
-    var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
-        db = FirebaseFirestore.getInstance()
-//        restaurantList = arrayListOf()
-        storage = Firebase.storage
-        //getRestaurants()
 
-        //Code for enabaling swipe left and right
+        //Firebase
+        db = FirebaseFirestore.getInstance()
+        storage = Firebase.storage
+
+        //getRestaurants()
+        val bundle: Bundle? = intent.extras
+        category = bundle?.getSerializable("category") as CategoryModel
+        categoryLabel.text = category.name
+
+
+        restaurantdbhelper = RestaurantsDBHelper(this)
+
+
+//        How to add restaurants:
+//        val restaurant = RestaurantModel(UUID.randomUUID().toString(), "THE SANDWICH", R.string.sushi_description.toString(), category.id, "https://cdn.vox-cdn.com/thumbor/3OdmXqvbG3rq2lKOagEjaExkpis=/0x0:2048x1588/1200x800/filters:focal(861x631:1187x957)/cdn.vox-cdn.com/uploads/chorus_image/image/68617826/134301527_150986323476283_8160139784797337975_o.0.jpg",
+//        "https://www.justonecookbook.com/wp-content/uploads/2020/01/Sushi-Rolls-Maki-Sushi-%E2%80%93-Hosomaki-1117-I.jpg", "https://i2.wp.com/www.eatthis.com/wp-content/uploads/2020/07/assorted-sushi.jpg?fit=1200%2C879&ssl=1",
+//                    "https://www.goodforyouglutenfree.com/wp-content/uploads/2017/02/Gluten-free-sushi-rolls-header.jpg")
+
+        getRestaurants()
+
+//        restaurantdbhelper.insertRestaurant(restaurant)
+//        restaurantListByCategory.add(restaurant)
+
+
+//      Swipe left, Swipe right function
         scrollView.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 when (event.action) {
-                    //ACTION_DOWN means when a press gesture has started.
-                    //LO UNICO QUE NECESITO CUANDO HACE ACTION_DOWN ES GUARDAR EL EVENT.X
                     MotionEvent.ACTION_DOWN -> {
-                        //event.x gets the x coordinate of the screen
                         run { downX = event.x }
                     }
-
-                    //ACTION_UP means when a pressed gesture has finish
                     MotionEvent.ACTION_UP -> {
                         upX = event.x
                         val deltaX: Float =  downX - upX
-                        if (Math.abs(deltaX) > 0 && Math.abs(deltaX) > swipeDistance) {
+                        if (abs(deltaX) > 0 && abs(deltaX) > swipeDistance) {
                             return if (downX > upX) {
-                                onLeftSwipe2(counter)
+                                index++
+                                onLeftSwipe2()
                                 true
                             } else {
-                                onSwipeRight2(counter)
+                                index--
+                                onSwipeRight2()
                                 true
                             }
                         }
@@ -85,27 +95,48 @@ class DiscoverActivity : AppCompatActivity() {
             }
         })
 
-        menuButton.setOnClickListener{
+        discoverMenuButton.setOnClickListener{
             val intent = Intent(this, DetailMenuActivity::class.java)
             startActivity(intent)
         }
     }
 
-
-
-
-    internal fun onLeftSwipe2(counter: Int) {
+    fun getRestaurants() {
+        val restaurants = restaurantdbhelper.readAllRestaurants(category.id)
+        restaurantListByCategory.addAll(restaurants)
+        updateRestaurants(index)
     }
 
-    internal fun onSwipeRight2(counter: Int) {
+    internal fun onLeftSwipe2() {
+        if (index <= (restaurantListByCategory.size - 1)) {
+            updateRestaurants(index)
+        }
+    }
+
+    internal fun onSwipeRight2() {
+        if (index > 0) {
+            updateRestaurants(index)
+        }
+    }
+
+    fun updateRestaurants(index: Int) {
+        val restaurant = restaurantListByCategory[index]
+        Picasso.with(this).load(restaurant.mainpicture).into(imagenPrincipal)
+        restaurantName.setText(restaurant.name)
+
+        Picasso.with(this).load(restaurant.firstpicture).into(discoverImage1)
+        Picasso.with(this).load(restaurant.secondpicture).into(discoverImage2)
+        Picasso.with(this).load(restaurant.thirdpicture).into(discoverImage3)
+
+        discoverDescription.text = restaurant.description
     }
 
 
 
 
 
-
-//    //funcion para igualar variables de fotos a sus path
+//    TODO ESTO ES FIREBASE
+//    funcion para igualar variables de fotos a sus path
 //    fun downloadImages(index: Int) {
 //        val restaurant = restaurantList[index]
 //        var imagenPrincipalPath = "Restuarantes/" + restaurant.id + "/restaurant.jpeg"

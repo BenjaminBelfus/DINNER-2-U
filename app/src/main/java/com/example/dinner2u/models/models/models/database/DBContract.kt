@@ -31,7 +31,7 @@ object DBContract {
             val COLUMN_RESTAURANT_ID = "restaurantid"
             val COLUMN_RESTAURANT_NAME = "restaurantname"
             val COLUMN_RESTAURANT_DESCRIPTION = "restaurantdescription"
-            val COLUMN_RESTAURANT_FOODCATEGORY = "restaurantfoodcategory"
+            val COLUMN_RESTAURANT_FOODCATEGORYID = "restaurantfoodcategoryid"
             val COLUMN_RESTAURANT_MAINPICTURE = "restaurantmainpicture"
             val COLUMN_RESTAURANT_FIRSTPICTURE = "restaurantfirstpicture"
             val COLUMN_RESTAURANT_SECONDPICTURE = "restaurantsecondpicture"
@@ -45,6 +45,17 @@ object DBContract {
             val COLUMN_MENU_ID = "menuid"
             val COLUMN_RESTAURANT_ID = "restaurantid"
             val COLUMN_DISH_ID = "dishid"
+        }
+    }
+
+    class DishEntry: BaseColumns {
+        companion object {
+            val TABLE_NAME = "Dishes"
+            val COLUMN_DISH_ID = " dishid"
+            val COLUMN_DISH_NAME = "dishname"
+            val COLUMN_DISH_PICTURE = "dishpicture"
+            val COLUMN_DISH_DESCRIPTION = "dishdescription"
+            val COLUMN_DISH_PRICE = "dishprice"
         }
     }
 }
