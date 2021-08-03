@@ -4,19 +4,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.service.autofill.OnClickAction
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.categories.CategoriesDBHelper
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_categories.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CategoriesActivity : AppCompatActivity() {
@@ -33,19 +26,23 @@ class CategoriesActivity : AppCompatActivity() {
         categoriesRecyclerView.setHasFixedSize(true)
         categoryList = arrayListOf<CategoryModel>()
         myAdapter = CategoryAdapter(categoryList)
+
+
         //noinspection RestrictedApi
         myAdapter.onItemClick = { category ->
             val intent = Intent(this, DiscoverActivity::class.java)
             intent.putExtra("category", category)
             startActivity(intent)
         }
+
+
         categoriesRecyclerView.adapter = myAdapter
         categoryDBHelper = CategoriesDBHelper(this)
 
         getCategories()
 
         logoutButton.setOnClickListener{
-            showAlert()
+            logOutAlert()
         }
 
     }
@@ -58,9 +55,17 @@ class CategoriesActivity : AppCompatActivity() {
 //        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Pizza"))
 //        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Burguers"))
 //        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Breakfast"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Pasta"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Chinese"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Salads"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Sandwich"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Japanese"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Ramen"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Vegan"))
+//        categoryDBHelper.insertCategory(CategoryModel(UUID.randomUUID().toString(), "Burrito"))
     }
 
-    fun showAlert() {
+    fun logOutAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Alert")
         builder.setMessage("Are you sure you want to logout")
@@ -75,5 +80,4 @@ class CategoriesActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 }

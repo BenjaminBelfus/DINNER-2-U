@@ -93,13 +93,50 @@ class RestaurantsDBHelper(context: Context) : SQLiteOpenHelper(context,
     }
 
 
-    fun readAllRestaurants(categoryid: String): ArrayList<RestaurantModel> {
+    fun readAllRestaurantsFromCategory(categoryid: String): ArrayList<RestaurantModel> {
         val restaurants = ArrayList<RestaurantModel>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
             cursor = db.rawQuery("select * from " + DBContract.RestaurantEntry.TABLE_NAME + " WHERE "
                     + DBContract.RestaurantEntry.COLUMN_RESTAURANT_FOODCATEGORYID + " = '" + categoryid + "'"  , null)
+        } catch (e: SQLiteException) {
+            db.execSQL(RestaurantsDBHelper.SQL_CREATE_ENTRIES)
+            return ArrayList()
+        }
+
+        var restaurantid: String
+        var name: String
+        var description: String
+        var foodcategory: String
+        var mainpicture: String
+        var firstpicture: String
+        var secondpicture: String
+        var thirdpicture: String
+        if (cursor!!.moveToFirst()) {
+            while (cursor.isAfterLast == false) {
+                restaurantid = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_ID))
+                name = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_NAME))
+                description = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_DESCRIPTION))
+                foodcategory = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_FOODCATEGORYID))
+                mainpicture = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_MAINPICTURE))
+                firstpicture = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_FIRSTPICTURE))
+                secondpicture = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_SECONDPICTURE))
+                thirdpicture = cursor.getString(cursor.getColumnIndex(DBContract.RestaurantEntry.COLUMN_RESTAURANT_THIRDPICTURE))
+
+                restaurants.add(RestaurantModel(restaurantid, name, description, foodcategory, mainpicture, firstpicture, secondpicture, thirdpicture))
+                cursor.moveToNext()
+            }
+        }
+        return restaurants
+    }
+
+    fun readAllRestaurantForCategoryDiscover(): ArrayList<RestaurantModel> {
+        val restaurants = ArrayList<RestaurantModel>()
+        val db = writableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery("select * from " + DBContract.RestaurantEntry.TABLE_NAME, null)
         } catch (e: SQLiteException) {
             db.execSQL(RestaurantsDBHelper.SQL_CREATE_ENTRIES)
             return ArrayList()

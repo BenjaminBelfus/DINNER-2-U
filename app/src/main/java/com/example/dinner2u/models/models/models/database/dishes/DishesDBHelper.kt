@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.dinner2u.models.models.models.database.DBContract
-import com.example.dinner2u.models.models.models.database.categories.CategoriesDBHelper
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
 
 class DishesDBHelper(context: Context): SQLiteOpenHelper(context, DishesDBHelper.DATABASE_NAME, null, DishesDBHelper.DATABASE_VERSION) {
@@ -40,6 +39,10 @@ class DishesDBHelper(context: Context): SQLiteOpenHelper(context, DishesDBHelper
         val values = ContentValues()
         values.put(DBContract.DishEntry.COLUMN_DISH_ID, dish.id)
         values.put(DBContract.DishEntry.COLUMN_DISH_NAME, dish.name)
+        values.put(DBContract.DishEntry.COLUMN_DISH_PICTURE, dish.picture)
+        values.put(DBContract.DishEntry.COLUMN_DISH_DESCRIPTION, dish.description)
+        values.put(DBContract.DishEntry.COLUMN_DISH_PRICE, dish.price)
+
 
         // Insert the new row, returning the primary key value of the new row
 
@@ -89,8 +92,12 @@ class DishesDBHelper(context: Context): SQLiteOpenHelper(context, DishesDBHelper
         val selectionArgs = arrayOf(dishid)
         // Issue SQL statement.
         db.delete(DBContract.DishEntry.TABLE_NAME, selection, selectionArgs)
-
         return true
+    }
+
+    fun deleteTable() {
+        val db = writableDatabase
+        db.execSQL("DROP TABLE IF EXISTS " + DBContract.DishEntry.TABLE_NAME)
     }
 
 
@@ -133,6 +140,9 @@ class DishesDBHelper(context: Context): SQLiteOpenHelper(context, DishesDBHelper
         private val SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DBContract.DishEntry.TABLE_NAME + " (" +
                     DBContract.DishEntry.COLUMN_DISH_ID + " TEXT PRIMARY KEY," +
-                    DBContract.DishEntry.COLUMN_DISH_NAME + " TEXT)"
+                    DBContract.DishEntry.COLUMN_DISH_PICTURE + " TEXT," +
+                    DBContract.DishEntry.COLUMN_DISH_NAME + " TEXT," +
+                    DBContract.DishEntry.COLUMN_DISH_DESCRIPTION + " TEXT," +
+                    DBContract.DishEntry.COLUMN_DISH_PRICE + " TEXT)"
     }
 }

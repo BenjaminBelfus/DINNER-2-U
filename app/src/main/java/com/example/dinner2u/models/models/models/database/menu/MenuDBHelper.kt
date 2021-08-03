@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.dinner2u.models.models.models.database.DBContract
+import com.example.dinner2u.models.models.models.database.dishes.DishesModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantsDBHelper
 import com.example.dinner2u.models.models.models.database.users.UsersDBHelper
@@ -84,34 +85,40 @@ class MenuDBHelper(context: Context) : SQLiteOpenHelper(context,
     }
 
 
-    fun readAllMenu(restaurantid: String): ArrayList<MenuModel> {
-        val menus = ArrayList<MenuModel>()
+    fun readAllMenu(restaurantid: String): ArrayList<DishesModel> {
+        val dishes = ArrayList<DishesModel>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select " + DBContract.DishEntry.COLUMN_DISH_ID + ", " + DBContract.DishEntry.COLUMN_DISH_NAME + ", " +
+            cursor = db.rawQuery("select " + DBContract.MenuEntry.TABLE_NAME + "." + DBContract.DishEntry.COLUMN_DISH_ID + ", " + DBContract.DishEntry.COLUMN_DISH_NAME + ", " +
                     DBContract.DishEntry.COLUMN_DISH_PICTURE + ", " + DBContract.DishEntry.COLUMN_DISH_DESCRIPTION + ", " + DBContract.DishEntry.COLUMN_DISH_PRICE +
-                "from " + DBContract.MenuEntry.TABLE_NAME + " RIGHT JOIN " + DBContract.DishEntry.TABLE_NAME + " ON " + DBContract.MenuEntry.COLUMN_DISH_ID + " = " + DBContract.DishEntry.COLUMN_DISH_ID
-                    + DBContract.MenuEntry.COLUMN_RESTAURANT_ID + " = '" + restaurantid + "'"  , null)
+                " from " + DBContract.MenuEntry.TABLE_NAME + " LEFT JOIN " + DBContract.DishEntry.TABLE_NAME + " ON " + DBContract.MenuEntry.TABLE_NAME + "."
+                    + DBContract.MenuEntry.COLUMN_DISH_ID + " = " + DBContract.DishEntry.TABLE_NAME + "."
+                    + DBContract.DishEntry.COLUMN_DISH_ID
+                    + " WHERE " + DBContract.MenuEntry.COLUMN_RESTAURANT_ID + " = '" + restaurantid + "'"  , null)
         } catch (e: SQLiteException) {
             db.execSQL(MenuDBHelper.SQL_CREATE_ENTRIES)
             return ArrayList()
         }
 
-        var menuid: String
-        var restaurantid: String
         var dishid: String
+        var name: String
+        var picture: String
+        var descrption: String
+        var price: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
-                menuid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_MENU_ID))
-                restaurantid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_RESTAURANT_ID))
-                dishid = cursor.getString(cursor.getColumnIndex(DBContract.MenuEntry.COLUMN_DISH_ID))
+                dishid = cursor.getString(cursor.getColumnIndex(DBContract.DishEntry.COLUMN_DISH_ID))
+                name = cursor.getString(cursor.getColumnIndex(DBContract.DishEntry.COLUMN_DISH_NAME))
+                picture = cursor.getString(cursor.getColumnIndex(DBContract.DishEntry.COLUMN_DISH_PICTURE))
+                descrption = cursor.getString(cursor.getColumnIndex(DBContract.DishEntry.COLUMN_DISH_DESCRIPTION))
+                price = cursor.getString(cursor.getColumnIndex(DBContract.DishEntry.COLUMN_DISH_PRICE))
 
-                menus.add(MenuModel(menuid, restaurantid, dishid))
+                dishes.add(DishesModel(dishid, name, picture, descrption, price))
                 cursor.moveToNext()
             }
         }
-        return menus
+        return dishes
     }
 
 
@@ -136,7 +143,7 @@ class MenuDBHelper(context: Context) : SQLiteOpenHelper(context,
         val DATABASE_VERSION: Int = 1
 
         private val SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + DBContract.RestaurantEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + DBContract.MenuEntry.TABLE_NAME + " (" +
                     DBContract.MenuEntry.COLUMN_MENU_ID + " TEXT PRIMARY KEY," +
                     DBContract.MenuEntry.COLUMN_RESTAURANT_ID + " TEXT," +
                     DBContract.MenuEntry.COLUMN_DISH_ID + " TEXT)"

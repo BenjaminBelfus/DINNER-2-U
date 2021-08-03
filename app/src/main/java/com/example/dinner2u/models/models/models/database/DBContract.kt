@@ -41,7 +41,7 @@ object DBContract {
 
     class MenuEntry: BaseColumns {
         companion object {
-            val TABLE_NAME = "Menus"
+            val TABLE_NAME = "menus"
             val COLUMN_MENU_ID = "menuid"
             val COLUMN_RESTAURANT_ID = "restaurantid"
             val COLUMN_DISH_ID = "dishid"
@@ -50,8 +50,8 @@ object DBContract {
 
     class DishEntry: BaseColumns {
         companion object {
-            val TABLE_NAME = "Dishes"
-            val COLUMN_DISH_ID = " dishid"
+            val TABLE_NAME = "dishes"
+            val COLUMN_DISH_ID = "dishid"
             val COLUMN_DISH_NAME = "dishname"
             val COLUMN_DISH_PICTURE = "dishpicture"
             val COLUMN_DISH_DESCRIPTION = "dishdescription"
