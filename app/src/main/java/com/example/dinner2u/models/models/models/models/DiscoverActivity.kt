@@ -16,6 +16,7 @@ import com.example.dinner2u.models.models.models.database.categories.CategoryMod
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantsDBHelper
 import com.squareup.picasso.Picasso
+import java.util.*
 import kotlin.math.abs
 
 
@@ -48,7 +49,7 @@ class DiscoverActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         storage = Firebase.storage
 
-        //getRestaurants()
+
         val bundle: Bundle? = intent.extras
         category = bundle?.getSerializable("category") as CategoryModel
         categoryLabel.text = category.name
@@ -58,14 +59,39 @@ class DiscoverActivity : AppCompatActivity() {
 
 
 //        How to add restaurants:
+//        Sushi:
 //        val restaurant = RestaurantModel(UUID.randomUUID().toString(), "THE SANDWICH", R.string.sushi_description.toString(), category.id, "https://cdn.vox-cdn.com/thumbor/3OdmXqvbG3rq2lKOagEjaExkpis=/0x0:2048x1588/1200x800/filters:focal(861x631:1187x957)/cdn.vox-cdn.com/uploads/chorus_image/image/68617826/134301527_150986323476283_8160139784797337975_o.0.jpg",
 //        "https://www.justonecookbook.com/wp-content/uploads/2020/01/Sushi-Rolls-Maki-Sushi-%E2%80%93-Hosomaki-1117-I.jpg", "https://i2.wp.com/www.eatthis.com/wp-content/uploads/2020/07/assorted-sushi.jpg?fit=1200%2C879&ssl=1",
 //                    "https://www.goodforyouglutenfree.com/wp-content/uploads/2017/02/Gluten-free-sushi-rolls-header.jpg")
 
-        getRestaurants()
 
-//        restaurantdbhelper.insertRestaurant(restaurant)
-//        restaurantListByCategory.add(restaurant)
+//        Burger:
+//        val burguer = RestaurantModel(UUID.randomUUID().toString(), "THE SANDWICH", "Championing some of the most incredible ingredients from amazing British providers, producers, artisans and growers, all cooked to absolute perfection and served with sensational sides, I guarantee this will be a burger experience like no other.",
+//        category.id, "https://cdn.vox-cdn.com/thumbor/tqyZUJEn66jgFZytP4zOSIy1pxE=/0x0:1000x559/1200x800/filters:focal(420x199:580x359)/cdn.vox-cdn.com/uploads/chorus_image/image/61171553/Gordon_20Ramsay_20BurGR_2012-18-2012_207.0.0.1529597415.0.jpg",
+//        "https://www.gordonramsayrestaurants.com/assets/Uploads/_resampled/CroppedFocusedImage121578650-50-Gordon-Ramsay-Brittania-Burger-Tablet.png", "https://www.hot-dinners.com/images/stories/blog/2020/ramseyburger2.jpg",
+//        "https://www.caesars.com/content/scaffold_pages/restaurant/planet-hollywood/phv/en/ramsay-burgr/_jcr_content/cards/card/slides71.stdimg.hd.l.png/1580498100051.png")
+//
+//        restaurantdbhelper.insertRestaurant(burguer)
+//        restaurantListByCategory.add(burguer)
+
+//      Pizza:
+//        val pizza = RestaurantModel(UUID.randomUUID().toString(), "Sliver", "We began SLIVER as a dream that centered around bringing the Bay Area to the next level in quality food and social awareness.", category.id,
+//        "https://www.pointfranchise.co.uk/images/zoom/articles/pizza-restaurant-franchises.jpeg", "https://simpletexting.com/wp-content/uploads/2018/10/11-Pizza-Marketing-Ideas.jpeg", "https://previews.123rf.com/images/lenyvavsha/lenyvavsha1505/lenyvavsha150500109/39764920-hot-italian-pizza-with-rocket-salad-and-salami-vertical-view-from-above.jpg",
+//            "http://embed.widencdn.net/img/beef/78foq693gs/exact/pizza-with-a-purpose-horizontal.tiff?keep=c&u=7fueml")
+//
+//        restaurantdbhelper.insertRestaurant(pizza)
+//        restaurantListByCategory.add(pizza)
+
+//      Breakfast:
+//        val breakfast = RestaurantModel(UUID.randomUUID().toString(), "Social Club", "Inspired, contemporary Korean American cuisine located in the heart of Berkeley’s University Avenue. Serving innovative Asian dinners and a creative American breakfast and brunch menu with a touch of Asian influence. We combine top notch chefs, top-quality locally-sourced organic ingredients and a relaxed, spacious atmosphere to create a haven for people who love great food and drinks.",
+//        category.id, "https://www.berkeleyside.org/wp-content/uploads/2017/01/Berkeley-Social-Club-BI6A5607.jpg", "https://s3-media0.fl.yelpcdn.com/bphoto/Apt-6Daczl4zamJkl_WbrQ/258s.jpg",
+//        "https://img.particlenews.com/image.php?type=thumbnail_580x000&url=3yB0Ct_0Z2qjnhN00", "https://resizer.otstatic.com/v2/photos/wide-huge/1/25018014.jpg")
+//
+//        restaurantdbhelper.insertRestaurant(breakfast)
+//        restaurantListByCategory.add(breakfast)
+
+
+        getRestaurants()
 
 
 //      Swipe left, Swipe right function
@@ -100,6 +126,7 @@ class DiscoverActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    
 
     fun getRestaurants() {
         val restaurants = restaurantdbhelper.readAllRestaurants(category.id)

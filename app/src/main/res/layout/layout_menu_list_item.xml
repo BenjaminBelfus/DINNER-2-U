@@ -39,14 +39,15 @@
             android:padding="10dp"
             android:id="@+id/container1"
             >
+
             <TextView
+                android:id="@+id/dish_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/dish_name"
                 android:text="Dish name"
-                android:textColor="#000"
-                android:textSize="19sp"
-                />
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="19sp" />
 
         </LinearLayout>
 

@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="14dp"
-    android:paddingRight="14dp">
+    android:paddingRight="14dp"
+    android:weightSum="2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantName"
             tools:srcCompat="@tools:sample/avatars"
-            app:layout_constraintWidth_percent="0.5"/>
+            app:layout_constraintHorizontal_weight="1"/>
 
         <ImageView
             android:id="@+id/discoverImage2"
@@ -76,11 +77,12 @@
             app:layout_constraintStart_toEndOf="@+id/discoverImage1"
             app:layout_constraintTop_toBottomOf="@+id/restaurantName"
             app:srcCompat="@drawable/sushi"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintHorizontal_weight="1"/>
 
         <ImageView
             android:id="@+id/discoverImage3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
