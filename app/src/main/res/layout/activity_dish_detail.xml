@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dishImage" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/dishDetailDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
             tools:text="TextView" />
 
         <Button
-            android:id="@+id/addButton"
+            android:id="@+id/dishDetailAddButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
@@ -70,10 +70,10 @@
             android:text="@string/add_to_cart"
             app:backgroundTint="#CD2626"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/dishDetailDescription" />
 
         <Button
-            android:id="@+id/bbutton"
+            android:id="@+id/dishDetailBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
@@ -82,7 +82,7 @@
             android:text="@string/back"
             app:backgroundTint="#A39999"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/dishDetailDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

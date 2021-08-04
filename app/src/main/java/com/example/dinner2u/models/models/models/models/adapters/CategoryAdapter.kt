@@ -1,4 +1,4 @@
-package com.example.dinner2u.models.models.models.models
+package com.example.dinner2u.models.models.models.models.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,12 +17,12 @@ class CategoryAdapter(private val categoryList: ArrayList<CategoryModel>):
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CategoryAdapter.MyViewHolder {
+    ): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.layout_category_list_item, parent, false)
         return MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CategoryAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val category: CategoryModel = categoryList[position]
         holder.name.text = category.name
         holder.cardview.setOnClickListener {

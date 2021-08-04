@@ -58,4 +58,23 @@ object DBContract {
             val COLUMN_DISH_PRICE = "dishprice"
         }
     }
+
+    class CartEntry: BaseColumns {
+        companion object {
+            val TABLE_NAME = "carts"
+            val COLUMN_CART_ID = "id"
+            val COLUMN_RESTAURANT_ID = "restaurantid"
+            val COLUMN_DISH_ID = "dishid"
+            val COLUMN_USER_ID = "userid"
+        }
+    }
+
+    class CartItemEntry: BaseColumns {
+        companion object {
+            val COLUMN_RESTAURANT_NAME = "restaurantname"
+            val COLUMN_DISH_NAME = "dishname"
+            val COLUMN_DISH_PRICE = "dishprice"
+            val COLUMN_USER_ADDRESS = "mainadress"
+        }
+    }
 }

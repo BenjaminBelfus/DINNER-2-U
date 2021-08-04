@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.users.UsersDBHelper
+import com.example.dinner2u.models.models.models.models.managers.DataManager
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 val user = usersDBHelper.getUser(emailAddressText.text.toString())
                 if (user != null) {
                     if (user.password.equals(passwordText.text.toString())) {
+                        DataManager.setCurrentUser(user)
                         val intent = Intent(this, CategoriesActivity::class.java)
                         startActivity(intent)
                     } else {

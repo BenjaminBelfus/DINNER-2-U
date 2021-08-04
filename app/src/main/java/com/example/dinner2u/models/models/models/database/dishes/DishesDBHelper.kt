@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.dinner2u.models.models.models.database.DBContract
-import com.example.dinner2u.models.models.models.database.categories.CategoryModel
 
 class DishesDBHelper(context: Context): SQLiteOpenHelper(context, DishesDBHelper.DATABASE_NAME, null, DishesDBHelper.DATABASE_VERSION) {
 

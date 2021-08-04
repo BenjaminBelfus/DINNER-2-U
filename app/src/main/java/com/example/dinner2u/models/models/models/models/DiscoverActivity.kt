@@ -100,6 +100,7 @@ class DiscoverActivity : AppCompatActivity() {
 //        restaurantListByCategory.add(sushi2)
 
 
+
         getRestaurants()
 
 

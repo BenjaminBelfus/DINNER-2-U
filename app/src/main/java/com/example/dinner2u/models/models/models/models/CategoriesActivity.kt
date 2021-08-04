@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.categories.CategoriesDBHelper
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
+import com.example.dinner2u.models.models.models.models.adapters.CategoryAdapter
 import kotlinx.android.synthetic.main.activity_categories.*
 import kotlin.collections.ArrayList
 
