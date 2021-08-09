@@ -11,6 +11,7 @@ import com.example.dinner2u.models.models.models.database.categories.CategoriesD
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
 import com.example.dinner2u.models.models.models.models.adapters.CategoryAdapter
 import kotlinx.android.synthetic.main.activity_categories.*
+import java.util.*
 import kotlin.collections.ArrayList
 
 class CategoriesActivity : AppCompatActivity() {

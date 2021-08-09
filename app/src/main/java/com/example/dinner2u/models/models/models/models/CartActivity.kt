@@ -1,5 +1,6 @@
 package com.example.dinner2u.models.models.models.models
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,7 @@ class CartActivity : AppCompatActivity() {
         updateExtraData()
     }
 
+    @SuppressLint("SetTextI18n")
     fun updateExtraData() {
         if (cartItemList.size > 0) {
             cartAddressID.text = "Address: " + cartItemList.first().useradress

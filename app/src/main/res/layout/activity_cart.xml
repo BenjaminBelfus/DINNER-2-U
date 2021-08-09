@@ -7,7 +7,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:padding="5dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Items"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartRestaurantName" />
 
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Delivery Detail"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView" />
 

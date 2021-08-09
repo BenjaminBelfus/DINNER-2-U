@@ -8,9 +8,11 @@ import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.dishes.DishesDBHelper
 import com.example.dinner2u.models.models.models.database.dishes.DishesModel
 import com.example.dinner2u.models.models.models.database.menu.MenuDBHelper
+import com.example.dinner2u.models.models.models.database.menu.MenuModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
 import com.example.dinner2u.models.models.models.models.adapters.DetailMenuAdapter
 import kotlinx.android.synthetic.main.activity_detail_menu.*
+import java.util.*
 
 class DetailMenuActivity : AppCompatActivity() {
 
@@ -52,8 +54,8 @@ class DetailMenuActivity : AppCompatActivity() {
 
         val dishesDBHelper = DishesDBHelper(this)
 //        dishesDBHelper.deleteTable()
-//        dishesDBHelper.readAllDishes()
-//
+        dishesDBHelper.readAllDishes()
+
 //        val californiaRoll = DishesModel(UUID.randomUUID().toString(), "California roll", "https://www.justonecookbook.com/wp-content/uploads/2014/10/California-Roll.jpg",
 //            "cucumber, crab, and avocado", "12")
 //        dishesDBHelper.insertDish(californiaRoll)
@@ -66,12 +68,12 @@ class DetailMenuActivity : AppCompatActivity() {
 //        val spicytuna = DishesModel(UUID.randomUUID().toString(), "Spicy tuna roll", "https://tiger-corporation-us.com/wp-content/uploads/2019/08/spicy-tuna-roll-900x600.jpg",
 //        "Sushi rice (steamed rice seasoned with sushi vinegar), nori (seaweed), and sashimi-grade tuna", "8")
 //        dishesDBHelper.insertDish((spicytuna))
-
 //
-//        val restaurantMenu = MenuModel(UUID.randomUUID().toString(), restaurant.id, "bead9e9c-dfc3-458f-b1ce-beefd47025f8")
-//        val restaurantMenu2 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "bcacfe79-6d6d-4451-ba40-892b271b6bde")
-//        val restaurantMenu3 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "e6a46034-79fb-4adc-bcee-14073aecf19d")
 //
+//        val restaurantMenu = MenuModel(UUID.randomUUID().toString(), restaurant.id, "5a0d869e-cca8-4816-ac11-ebb31ee37314")
+//        val restaurantMenu2 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "c8dc27a4-54bc-48d6-ba3a-88d328efc940")
+//        val restaurantMenu3 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "58f6eea2-317c-497a-926e-affc786fa210")
+////
 //        menuDBHelper.insertMenu(restaurantMenu)
 //        menuDBHelper.insertMenu(restaurantMenu2)
 //        menuDBHelper.insertMenu(restaurantMenu3)
@@ -89,10 +91,10 @@ class DetailMenuActivity : AppCompatActivity() {
 //        dishesDBHelper.insertDish(pizza1)
 //        dishesDBHelper.insertDish(pizza2)
 //        dishesDBHelper.insertDish(pizza3)
-
-//        val restaurantmenu = MenuModel(UUID.randomUUID().toString(), restaurant.id, "5178c0d9-ca3d-48f2-bba1-9b68376ec32b")
-//        val restaurantmenu2 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "b16462c4-a680-4023-a247-9857ce0cfbed")
-//        val restaurantmenu3 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "e3a40a92-fa3f-4552-b943-eb20e2ae454e")
+//
+//        val restaurantmenu = MenuModel(UUID.randomUUID().toString(), restaurant.id, "f12113ae-c736-49a5-9fa9-6d2628d524ae")
+//        val restaurantmenu2 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "c1719255-a71c-484b-abc0-2c5970988ff1")
+//        val restaurantmenu3 = MenuModel(UUID.randomUUID().toString(), restaurant.id, "713331e5-6658-480b-855e-d77a47560f96")
 //
 //        menuDBHelper.insertMenu(restaurantmenu)
 //        menuDBHelper.insertMenu(restaurantmenu2)
