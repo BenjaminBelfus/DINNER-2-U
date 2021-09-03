@@ -88,7 +88,7 @@ class CartDBHelper(context: Context) : SQLiteOpenHelper(context, CartDBHelper.DA
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(cartid)
         // Issue SQL statement.
-        db.delete(DBContract.CategoryEntry.TABLE_NAME, selection, selectionArgs)
+        db.delete(DBContract.CartEntry.TABLE_NAME, selection, selectionArgs)
 
         return true
     }

@@ -1,21 +1,26 @@
 package com.example.dinner2u.models.models.models.models
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.*
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.activity_discover.*
 import com.example.dinner2u.R
 import com.example.dinner2u.models.models.models.database.categories.CategoryModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantsDBHelper
+import com.google.firebase.firestore.*
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+import io.github.muddz.styleabletoast.StyleableToast
+import kotlinx.android.synthetic.main.activity_categories.*
+import kotlinx.android.synthetic.main.activity_discover.*
 import java.util.*
 import kotlin.math.abs
 
@@ -39,8 +44,11 @@ class DiscoverActivity : AppCompatActivity() {
     //Variable used for keeping track of the restaurant in restauratnListByCategory when swipe left or right
     private var index = 0
 
+    var ifToast:Boolean = true
 
 
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
@@ -56,6 +64,29 @@ class DiscoverActivity : AppCompatActivity() {
 
 
         restaurantdbhelper = RestaurantsDBHelper(this)
+
+        discoverCartButton.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
+
+//        discoverCartButton.setOnTouchListener(OnTouchListener { v, me ->
+//            val oldXvalue:Float
+//            val oldYvalue:Float
+//            if (me.action == MotionEvent.ACTION_DOWN) {
+//                oldXvalue = me.x
+//                oldYvalue = me.y
+//                Log.i(myTag, "Action Down " + oldXvalue.toString() + "," + oldYvalue)
+//            } else if (me.action == MotionEvent.ACTION_MOVE) {
+//                val params = LayoutParams(
+//                    v.width, v.height,
+//                    (me.rawX - v.width / 2).toInt(), (me.rawY - v.height).toInt()
+//                )
+//                v.layoutParams = params
+//            }
+//            true
+//        })
+
 
 
 
@@ -106,6 +137,12 @@ class DiscoverActivity : AppCompatActivity() {
 
 
         getRestaurants()
+
+        if (ifToast) {
+            StyleableToast.makeText(this@DiscoverActivity, "You can swipe left or right to see more restaurants", Toast.LENGTH_SHORT, R.style.mytoast).show()
+        }
+
+
 
 
 
@@ -173,15 +210,19 @@ class DiscoverActivity : AppCompatActivity() {
 
     fun updateRestaurants(index: Int) {
         val restaurant = restaurantListByCategory[index]
-        Picasso.with(this).load(restaurant.mainpicture).into(imagenPrincipal)
+        Picasso.with(this).load(restaurant.mainpicture).resize(1000, 500).into(imagenPrincipal)
         restaurantName.setText(restaurant.name)
 
-        Picasso.with(this).load(restaurant.firstpicture).into(discoverImage1)
-        Picasso.with(this).load(restaurant.secondpicture).into(discoverImage2)
-        Picasso.with(this).load(restaurant.thirdpicture).into(discoverImage3)
+        Picasso.with(this).load(restaurant.firstpicture).resize(500, 200).centerCrop().into(discoverImage1)
+        Picasso.with(this).load(restaurant.secondpicture).resize(500, 200).centerCrop().into(discoverImage2)
+        Picasso.with(this).load(restaurant.thirdpicture).resize(1000, 400).centerCrop().into(discoverImage3)
 
         discoverDescription.text = restaurant.description
     }
+
+
+
+
 
 
 

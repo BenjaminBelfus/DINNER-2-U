@@ -26,7 +26,7 @@ class CartAdapter (private val cartItemList: ArrayList<CartItemModel>):
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val cart: CartItemModel = cartItemList[position]
         holder.dishname.text = cart.dishname
-        holder.dishprice.text = cart.dishprice
+        holder.dishprice.text = "$" + cart.dishprice
         holder.cardview.setOnClickListener {
             onItemClick?.invoke(cart)
         }

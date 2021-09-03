@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dinner2u">
 
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DINNER2U">
-        <activity android:name=".models.models.models.models.CategoriesActivity"></activity>
-        <activity android:name=".models.models.models.models.CheckoutActivity"/>
-        <activity android:name=".models.models.models.models.CartActivity"/>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.DINNER2U.NoActionBar"></activity>
+        <activity android:name=".models.models.models.models.CategoriesActivity" />
+        <activity android:name=".models.models.models.models.CheckoutActivity" />
+        <activity android:name=".models.models.models.models.CartActivity" />
         <activity android:name=".models.models.models.models.DishDetailActivity" />
         <activity android:name=".models.models.models.models.DetailMenuActivity" />
         <activity android:name=".models.models.models.models.DiscoverActivity" />

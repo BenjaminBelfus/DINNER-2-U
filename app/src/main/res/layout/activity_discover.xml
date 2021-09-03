@@ -10,10 +10,23 @@
     android:paddingRight="14dp"
     android:weightSum="2">
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".models.models.models.models.DiscoverActivity">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/discoverCartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_shopping_cart_24"/>
 
         <TextView
             android:id="@+id/categoryLabel"
@@ -51,8 +64,10 @@
             android:id="@+id/restaurantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/sushi_restaurant_name"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
             app:layout_constraintStart_toStartOf="@+id/imagenPrincipal"
             app:layout_constraintTop_toBottomOf="@+id/imagenPrincipal" />
 
@@ -96,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/discoverImage3" />
 
@@ -103,10 +119,10 @@
             android:id="@+id/discoverMenuButton"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:paddingRight="16dp"
             android:text="@string/menu"
-            android:textSize="26dp"
+            android:textSize="38dp"
             app:backgroundTint="#CD3636"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"

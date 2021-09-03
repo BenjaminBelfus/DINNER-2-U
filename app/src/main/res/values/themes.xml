@@ -13,4 +13,25 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.DINNER2U.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DINNER2U.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DINNER2U.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="mytoast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">#0000</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">#F8ECE0</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">#fff</item>
+        <item name="stLength">SHORT</item> LONG or SHORT
+        <item name="stRadius">5dp</item>
+    </style>
 </resources>

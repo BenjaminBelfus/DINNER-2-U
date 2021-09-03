@@ -11,6 +11,7 @@ import com.example.dinner2u.models.models.models.database.menu.MenuDBHelper
 import com.example.dinner2u.models.models.models.database.menu.MenuModel
 import com.example.dinner2u.models.models.models.database.restaurants.RestaurantModel
 import com.example.dinner2u.models.models.models.models.adapters.DetailMenuAdapter
+import kotlinx.android.synthetic.main.activity_categories.*
 import kotlinx.android.synthetic.main.activity_detail_menu.*
 import java.util.*
 
@@ -100,6 +101,11 @@ class DetailMenuActivity : AppCompatActivity() {
 //        menuDBHelper.insertMenu(restaurantmenu2)
 //        menuDBHelper.insertMenu(restaurantmenu3)
         getMenu()
+
+        detailMenuCartButton.setOnClickListener{
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

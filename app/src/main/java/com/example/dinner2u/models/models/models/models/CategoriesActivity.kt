@@ -47,6 +47,11 @@ class CategoriesActivity : AppCompatActivity() {
             logOutAlert()
         }
 
+        categoriesCartButton.setOnClickListener{
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun getCategories() {

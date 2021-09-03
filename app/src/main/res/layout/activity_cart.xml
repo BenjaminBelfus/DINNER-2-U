@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:layout_width="409dp"
-    android:layout_height="729dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
-    android:padding="5dp">
+    android:padding="15dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Items"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartRestaurantName" />
@@ -50,22 +52,29 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Delivery Detail"
+            android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView" />
+
+        <TextView
+            android:id="@+id/cartTotalPriceID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/cartAddressID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/cartTotalPriceID" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
     </ScrollView>
